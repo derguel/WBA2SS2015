@@ -18,7 +18,7 @@ dez.wolkenkratzer.sort(function(a,b){
         console.log(err);
         return;
         }
-        console.log("Datei wurde gesichert.");
+        console.log("Gesichert");
     });
 
 dez.wolkenkratzer.forEach(function(entry){
