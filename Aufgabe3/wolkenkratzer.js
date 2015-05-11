@@ -22,9 +22,9 @@ dez.wolkenkratzer.sort(function(a,b){
     });
 
 dez.wolkenkratzer.forEach(function(entry){
-        console.log('\nName:' + entry.name);
-        console.log('\nStadt:' + entry.stadt);
-        console.log('\nHoehe:' + entry.hoehe);
+        console.log(chalk.blue('\nName:' + entry.name));
+        console.log(chalk.red('\nStadt:' + entry.stadt));
+        console.log(chalk.green('\nHoehe:' + entry.hoehe));
         console.log('\n\n--------------------');
     });
 });
