@@ -2,7 +2,7 @@ var chalk = require('chalk');
 var fs = require('fs');
 fs.readFile(__dirname + "/wolkenkratzer.json", 'utf8', function (err, data){
     if (err) {
-         console.log('Error: ' + err); 
+         console.log(err); 
         return;
     }
     var dez = JSON.parse(data.toString());
@@ -15,7 +15,7 @@ dez.wolkenkratzer.sort(function(a,b){
 });
     fs.writeFile(__dirname + "/wolkenkratzer_sortiert.json", JSON.stringify(str), function(err, data){ 
         if (err){
-        console.log('Error' + err);
+        console.log(err);
         return;
         }
         console.log("Datei wurde gesichert.");
