@@ -11,6 +11,9 @@ dez.wolkenkratzer.sort(function(a,b){
     if (a.hoehe > b.hoehe) {
         return 1; 
     }
+    if (a.hoehe < b.hoehe) {
+        return -1;
+    }
     return 0; 
 });
     fs.writeFile(__dirname + "/wolkenkratzer_sortiert.json", JSON.stringify(str), function(err, data){ 
