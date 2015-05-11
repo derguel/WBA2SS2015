@@ -1,0 +1,22 @@
+{
+"name": "Aufgabe2",
+"version": "1.0.0",
+"description": "Aufgabe 2 WS1",
+"homepage": "https://github.com/derguel/WBA2SS2015CakirMirauErguel",
+"bugs": {
+    "url" : "https://github.com/derguel/WBA2SS2015CakirMirauErguel/issues"
+    },
+"license": "ISC",
+"author": "Philip Mirau, Derya Ergül, Zeynep Cakir",
+"main": "wolkenkratzer.js",
+"repository": {
+    "type": "git",
+    "url": "https://github.com/derguel/WBA2SS2015CakirMirauErguel.git"
+    },
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+    },
+"dependencies": {
+    "chalk": "^1.0.0"
+    }
+}
