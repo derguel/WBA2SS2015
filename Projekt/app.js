@@ -158,10 +158,6 @@ app.get('/trainer', function(req, res) {
         trainer.push(JSON.parse(val));
       });
 
-      trainer = trainer.map(function(trainer) {
-        return {name: trainer.name};
-      })
-
       res.json(trainer);
     });
   });
@@ -256,8 +252,8 @@ app.delete('/team/:team/spieler/:id', function(req, res) {
 app.get('/team/:team/spieler', function(req, res) {
   db.get('teamID: ' + req.params.team, function(err, rep) {
     if(rep) {   
-      db.keys('spielerID:*', function(err, rep) { //id-team tauschen
-
+      //db.keys('spielerID:*', function(err, rep) { //id-team tauschen
+      db.keys('spielerID: ' + req.params.team + '_*', function(err, rep) {
         var spieler = [];
 
         if(rep.length == 0) {
@@ -270,10 +266,6 @@ app.get('/team/:team/spieler', function(req, res) {
          rep.forEach(function(val){
             spieler.push(JSON.parse(val));
           });
-
-          spieler = spieler.map(function(spieler) {
-            return {name: spieler.name};
-          })
 
           res.json(spieler);
         });
@@ -388,10 +380,6 @@ app.get('/team/:team/spielplan', function(req, res) {
           rep.forEach(function(val){
             splan.push(JSON.parse(val));
           });
-
-         splan = splan.map(function(splan) {
-           return {name: splan.name};
-          })
 
          res.json(splan);
         });
@@ -568,7 +556,7 @@ app.put('/team/:team/trainingsplan/:id/:spieler', function(req, res) {
               tPlan.spieler = array;
               db.set('trainingsplanID: ' + req.params.id, JSON.stringify(tPlan), function(err, rep) {
                 res.json(tPlan);
-              });
+               });
             }
           });
         }
