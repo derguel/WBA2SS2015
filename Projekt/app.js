@@ -423,7 +423,7 @@ app.post('/team/:team/trainingsplan', function(req, res) {
          });
 
          array = array.map(function(array) {
-            return {name: array.name, angemeldet: 1};
+            return {name: array.name, id: array.id, angemeldet: 1};
          })
 
     
@@ -544,5 +544,44 @@ app.get('/team/:team/trainingsplan', function(req, res) {
    }
  });
 });
+
+//Abmeldung
+app.put('/team/:team/trainingsplan/:id/:spieler', function(req, res) {
+  db.get('teamID: ' + req.params.team, function(err, rep) {
+    if(rep) { 
+      db.get('trainingsplanID: ' + req.params.id, function(err, rep) {
+        if(rep) {
+          var tPlan = JSON.parse(rep);
+          var tPlanArr = tPlan.spieler;
+          var array = [];
+
+          tPlanArr.forEach(function(val){
+            array.push(val);
+          });
+
+          console.log("Array: " + array);
+          
+          array.forEach(function(val, index) {
+           
+            if(val.id == req.params.spieler) {
+              array[index] = req.body;
+              tPlan.spieler = array;
+              db.set('trainingsplanID: ' + req.params.id, JSON.stringify(tPlan), function(err, rep) {
+                res.json(tPlan);
+              });
+            }
+          });
+        }
+        else {
+          res.status(404).type('text').send('Der Trainingsplan mit der ID: ' + req.params.id + ' existiert nicht.');
+        }
+      });
+    }
+    else {
+      res.status(404).type('text').send('Das Team mit der ID: ' + req.params.team + 'existiert nicht.');
+    }
+  });  
+});
+
 
 app.listen(3000);
